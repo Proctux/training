@@ -18,8 +18,7 @@ public class Program {
 		List<String> list = new ArrayList<>();
 
 		
-		System.out.println("Enter the file path: ");
-		String path = sc.nextLine();
+		String path = "C:\\Windows\\Temp\\list1.txt";
 
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
