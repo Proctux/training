@@ -9,27 +9,29 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
+import model.entities.Employee;
+
 public class Program {
 
 	public static void main(String[] args) {
 
 		Locale.setDefault(Locale.US);
 		Scanner sc = new Scanner(System.in);
-		List<String> list = new ArrayList<>();
-
 		
+		List<Employee> list = new ArrayList<>();
 		String path = "C:\\Windows\\Temp\\list1.txt";
 
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
-			String name = br.readLine();
-			while (name != null) {
-				list.add(name);
-				name = br.readLine();
+			String line = br.readLine();
+			while (line != null) {
+				String[] fields = line.split(",");
+				list.add(new Employee(fields[0], Double.parseDouble(fields[1])));
+				line = br.readLine();
 			}
 			Collections.sort(list);
-			for (String s : list) {
-				System.out.println(s);
+			for (Employee s : list) {
+				System.out.println(s.getName() + ", " + s.getSalary());
 			}
 		} 
 		catch (IOException e) {
